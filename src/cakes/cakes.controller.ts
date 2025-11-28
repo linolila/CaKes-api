@@ -13,26 +13,21 @@ import { CakesService } from './cakes.service';
 import { Cakes } from './entity/cake.entity';
 import { CreateCakeDto } from './dto/create.cake.dto';
 import { UpdateCakeDto } from './dto/update.cake.dto';
+import { CakesFilterDto } from './dto/cake.filter.dto';
 
 @ApiTags('cakes')
 @Controller('cakes')
 export class CakesController {
   constructor(private cakeService: CakesService) {}
   @Get()
-  getCakes(
-    @Query('categoryId') categoryId?: number,
-    @Query('name') name?: string,
-    @Query('minPrice') minPrice?: number,
-    @Query('maxPrice') maxPrice?: number,
-    @Query('search') search?: string,
-  ): Cakes[] {
-    return this.cakeService.getAllCakes({
-      categoryId,
-      name,
-      minPrice,
-      maxPrice,
-      search,
-    });
+  getCakes(@Query() filter: CakesFilterDto): {
+    total: number;
+    page: number;
+    limit: number;
+    data: Cakes[];
+  } {
+    // forward the entire filter object to the service
+    return this.cakeService.getAllCakes(filter);
   }
   @Get(':id')
   getCakesById(@Param('id') id: string): Cakes {

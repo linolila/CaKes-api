@@ -13,7 +13,6 @@ import { OrdersController } from './orders/orders.controller';
 import { AuthController } from './auth/auth.controller';
 import { CategoriesModule } from './categories/categories.module';
 import { CakesService } from './cakes/cakes.service';
-import { CheckModule } from './check/check.module';
 
 @Module({
   imports: [
@@ -23,7 +22,6 @@ import { CheckModule } from './check/check.module';
     // NotificationsModule,
     AuthModule,
     CategoriesModule,
-    CheckModule,
   ],
   controllers: [
     AppController,
