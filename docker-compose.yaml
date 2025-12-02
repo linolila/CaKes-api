@@ -1,0 +1,10 @@
+services:
+  pg:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=cake_shop
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    

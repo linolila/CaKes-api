@@ -70,9 +70,12 @@ export class CakesService {
     return cake;
   }
   createCake(createCakeDto: CreateCakeDto): CreateCakeResponse {
-    const newCake = { id: Date.now(), ...createCakeDto } as Cakes;
+    const newCake = { id: Date.now(), ...createCakeDto };
     this.cakes.push(newCake);
     return { newCake, message: `${newCake.name} is created successfully` };
+  }
+  findByCategory(categoryId: number): Cakes[] {
+    return this.cakes.filter((cake) => cake.categoryId === categoryId);
   }
   updateCake(id: number, updateCakeDto: UpdateCakeDto): Cakes {
     const cake = this.cakes.find((c: UpdateCakeDto) => c.id === id);
